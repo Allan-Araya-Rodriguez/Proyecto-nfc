@@ -25,7 +25,7 @@ function Crear1() {
                 className="border border-secondary text-secondary py-2 px-10  rounded text-xs"
               >
                 Siguiente
-              </button>
+              </button> 
             </div>
           </div>
         </div>
