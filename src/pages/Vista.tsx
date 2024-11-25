@@ -4,6 +4,7 @@ import { GiNoseSide } from "react-icons/gi";
 import { MdEmail, MdContacts, MdPhoneIphone } from "react-icons/md";
 import LabelItem from '../components/LabelItem';
 import LabelIconItem from '../components/LabelIconItem';
+import LinkModal from '../components/LinkModal';
 import { GiMedicalDrip } from "react-icons/gi";
 
 export default function Vista() {
@@ -71,6 +72,11 @@ export default function Vista() {
                                     <li>No hay alergias</li>
                                 )}
                             </ul>
+                            {listaAlergias && listaAlergias.length > 0 ? (
+                                <LinkModal label="Ver alergias" title="Alergias" data={listaAlergias} />
+                            ) : (
+                                <></>
+                            )}
                         </div>
                         <div className="bg-[#EAEEF1] shadow-md rounded-md w-full flex flex-col items-center p-4">
                             <LabelIconItem label="Medicamentos" icon={FaPrescriptionBottle} />
@@ -83,6 +89,11 @@ export default function Vista() {
                                     <li>No hay medicamentos</li>
                                 )}
                             </ul>
+                            {listaMedicamentos && listaMedicamentos.length > 0 ? (
+                                <LinkModal label="Ver medicamentos" title="Medicamentos" data={listaMedicamentos} />
+                            ) : (
+                                <></>
+                            )}
                         </div>
                     </div>
 
@@ -98,6 +109,11 @@ export default function Vista() {
                                 <li>No hay enfermedades crónicas</li>
                             )}
                         </ul>
+                        {listaEnfermedades && listaEnfermedades.length > 0 ? (
+                            <LinkModal label="Ver enfermedades crónicas" title="Enfermedades crónicas" data={listaEnfermedades} />
+                        ) : (
+                            <></>
+                        )}
                     </div>
                 </div>
             </div>
