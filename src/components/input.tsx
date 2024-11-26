@@ -8,7 +8,7 @@ interface InputFieldProps {
     Icon: LucideIcon;
     type: 'text' | 'date';
     value?: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;  // Añadido onChange
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;  
 }
 
 const InputField: FC<InputFieldProps> = ({ name, label, placeholder, Icon, type, value, onChange }) => {
@@ -26,7 +26,7 @@ const InputField: FC<InputFieldProps> = ({ name, label, placeholder, Icon, type,
                         placeholder={placeholder}
                         style={{ height: '100%' }}
                         value={value}
-                        onChange={onChange}  // Añadido onChange
+                        onChange={onChange}  
                     />
                 ) : (
                     <input
@@ -36,7 +36,7 @@ const InputField: FC<InputFieldProps> = ({ name, label, placeholder, Icon, type,
                         placeholder={placeholder}
                         style={{ height: '100%' }}
                         value={value}
-                        onChange={onChange}  // Añadido onChange
+                        onChange={onChange}  
                     />
                 )}
             </div>
