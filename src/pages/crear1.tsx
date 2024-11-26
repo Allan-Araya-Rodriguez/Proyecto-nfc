@@ -2,7 +2,10 @@ import Headers from '../components/header';
 import MenuBar from '../components/menuCrear';
 import FormularioRegistro from '../components/FormularioRegistro1'; 
 import PhotoUpload from '../components/cargarImg';
+import { useNavigate } from "react-router-dom";
 function Crear1() {
+  
+  const navigate = useNavigate();
   return (
     <div className='bg-background h-screen'>
       <Headers />
@@ -11,7 +14,7 @@ function Crear1() {
           {/* Encabezado */}
           <div className="bg-primary h-16 flex justify-between items-center px-4">
             <span className="text-white ml-10 text-lg font-bold">Crear Perfil</span>
-            <button className="border border-white text-white py-2 px-10 mr-10 rounded text-xs">Cancelar</button>
+            <button className="border border-white text-white py-2 px-10 mr-10 rounded text-xs" onClick={() => navigate("/RUTA TABLA")}>Cancelar</button>
           </div>
           {/* Barra de progreso */}
           <MenuBar />
@@ -22,6 +25,8 @@ function Crear1() {
             <div className="flex justify-end mt-4">
               <button
                 type="submit"
+                onClick={() => navigate("/crear2")}
+                
                 className="border border-secondary text-secondary py-2 px-10  rounded text-xs"
               >
                 Siguiente
