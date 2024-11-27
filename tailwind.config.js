@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  plugins: [require('tailwind-clip-path')],
   theme: {
     extend: {
       colors: {
@@ -13,6 +14,9 @@ export default {
       },
       fontFamily: {
         'serif': ['Source Serif Pro', 'serif'],
+      },
+      clipPath: {
+        skew: 'polygon(0 0, 100% 0, 100% 100%, 85% 100%)',
       },
     },
   },

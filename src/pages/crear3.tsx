@@ -33,54 +33,53 @@ function Crear3() {
                     <MenuBar />
                     {/* Formulario */}
                     <div className="p-4 mx-10">
-                    <form>
-                        <InputField
-                            name="correo"
-                            label="Correo"
-                            placeholder="Ingrese su Correo"
-                            type="text"
-                            Icon={Mail}
-                            value={correo}
-                            onChange={handleCorreoChange} 
-                        />
-                        <InputField
-                            name="telefonoPersonal"
-                            label="Teléfono"
-                            placeholder="Ingrese su Teléfono"
-                            type="text"
-                            Icon={Phone}
-                            value={telef}
-                            onChange={handleTelefChange} 
-                        />
-                        <InputField
-                            name="telefonoEmergencia"
-                            label="Teléfono de Emergencia"
-                            placeholder="Ingrese su Teléfono de Emergencia"
-                            type="text"
-                            Icon={Phone}
-                            value={telefEmergencia}
-                            onChange={handleTelefEmergenciaChange}  
-                        />
-                        <InputField
-                            name="direccion"
-                            label="Dirección"
-                            placeholder="Ingrese su Dirección"
-                            type="text"
-                            Icon={MapPinHouse}
-                            value={direccion}
-                            onChange={handleDireccionChange}  
-                        />
-                    </form>
+                        <form>
+                            <InputField
+                                name="correo"
+                                label="Correo"
+                                placeholder="Ingrese su Correo"
+                                type="text"
+                                Icon={Mail}
+                                value={correo}
+                                onChange={handleCorreoChange}
+                            />
+                            <InputField
+                                name="telefonoPersonal"
+                                label="Teléfono"
+                                placeholder="Ingrese su Teléfono"
+                                type="text"
+                                Icon={Phone}
+                                value={telef}
+                                onChange={handleTelefChange}
+                            />
+                            <InputField
+                                name="telefonoEmergencia"
+                                label="Teléfono de Emergencia"
+                                placeholder="Ingrese su Teléfono de Emergencia"
+                                type="text"
+                                Icon={Phone}
+                                value={telefEmergencia}
+                                onChange={handleTelefEmergenciaChange}
+                            />
+                            <InputField
+                                name="direccion"
+                                label="Dirección"
+                                placeholder="Ingrese su Dirección"
+                                type="text"
+                                Icon={MapPinHouse}
+                                value={direccion}
+                                onChange={handleDireccionChange}
+                            />
+                        </form>
 
-                    <div className="flex justify-end mt-4">
-                        <button
-                            type="submit"
-                            onClick={() => navigate("/crear2")}
-                            className="border border-secondary text-secondary py-2 px-10 rounded text-xs"
-                        >
-                            Siguiente
-                        </button>
-                    </div>
+                        <div className="flex justify-between">
+                            <button className="border border-blue-700 text-blue-700 py-2 px-10  rounded text-xs" onClick={() => navigate("/crear2")}>
+                                Retroceder
+                            </button>
+                            <button className="border border-secondary text-secondary py-2 px-10  rounded text-xs" onClick={() => navigate("/crear4")}>
+                                Siguiente
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

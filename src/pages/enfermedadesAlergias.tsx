@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { Edit2, X, Check } from "lucide-react"; // Importar íconos específicos
 import Headers from "../components/header";
 import MenuBar from "../components/menuCrear";
-
+import { Navigate ,useNavigate } from "react-router-dom";
 interface Item {
     id: number;
     name: string;
 }
 
 const RegistroEnfermedadesYAlergias: React.FC = () => {
+    const navigate = useNavigate();
+
     const [enfermedad, setEnfermedad] = useState<string>("");
     const [alergia, setAlergia] = useState<string>("");
     const [enfermedades, setEnfermedades] = useState<Item[]>([]);
@@ -164,9 +166,21 @@ const RegistroEnfermedadesYAlergias: React.FC = () => {
                                 ))}
                             </ul>
                         </div>
-                    </div>
-                </div>
+                        <div className="flex justify-between">
+              <button className="border border-blue-700 text-blue-700 py-2 px-10  rounded text-xs" onClick={()=> navigate("/crear3")}>
+                Retroceder
+              </button>
+              <button className="border border-secondary text-secondary py-2 px-10  rounded text-xs" onClick={()=>navigate("/")}>
+                Guardar
+              </button>
             </div>
+                    </div>
+                    
+                </div>
+                
+                
+            </div>
+           
         </div>
     );
 };

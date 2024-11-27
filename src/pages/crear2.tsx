@@ -1,9 +1,11 @@
 import Headers from '../components/header';
 import MenuBar from '../components/menuCrear';
 import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 function Crear2() {
+  const navigate = useNavigate();
   const [acceptsTransfusions, setAcceptsTransfusions] = useState(false);
   const [isDonor, setIsDonor] = useState(false);
   return (
@@ -44,7 +46,7 @@ function Crear2() {
                 <span className="">Acepta transfusiones de sangre</span>
                 <button
                   onClick={() => setAcceptsTransfusions(!acceptsTransfusions)}
-                  className={`relative w-10 h-5 rounded-full ${acceptsTransfusions ? "bg-orange-500" : "bg-gray-300"
+                  className={`relative w-10 h-5 rounded-full ${acceptsTransfusions ? "bg-primary" : "bg-gray-300"
                     } transition-colors duration-300`}
                 >
                   <span
@@ -59,7 +61,7 @@ function Crear2() {
                 <span className="">Donante</span>
                 <button
                   onClick={() => setIsDonor(!isDonor)}
-                  className={`relative w-10 h-5 rounded-full ${isDonor ? "bg-orange-500" : "bg-gray-300"
+                  className={`relative w-10 h-5 rounded-full ${isDonor ? "bg-primary" : "bg-gray-300"
                     } transition-colors duration-300`}
                 >
                   <span
@@ -73,17 +75,17 @@ function Crear2() {
             <div className="mb-6">
               <label className="">Medicamentos</label>
               <textarea
-                className="w-full h-24 border px-2 pt-2 border-gray-300  mt-2 rounded  text-sm focus:ring-orange-500 focus:border-orange-500"
+                className="w-full h-24 border px-2 pt-2 border-gray-300  mt-2 rounded  text-sm  focus:border-black-500 focus:outline-none"
                 placeholder="Ingrese los medicamentos"
               ></textarea>
             </div>
 
             {/* Botones */}
             <div className="flex justify-between">
-              <button className="border border-blue-700 text-blue-700 py-2 px-10  rounded text-xs">
+              <button className="border border-blue-700 text-blue-700 py-2 px-10  rounded text-xs" onClick={()=> navigate("/crear1")}>
                 Retroceder
               </button>
-              <button className="border border-secondary text-secondary py-2 px-10  rounded text-xs">
+              <button className="border border-secondary text-secondary py-2 px-10  rounded text-xs" onClick={()=>navigate("/crear3")}>
                 Siguiente
               </button>
             </div>

@@ -5,7 +5,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import App from './App';
+import App from './Tabla';
 import Crear1 from './pages/crear1';
 import Crear2 from './pages/crear2';
 import Crear3 from './pages/crear3';
