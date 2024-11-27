@@ -14,7 +14,7 @@ function Crear1() {
           {/* Encabezado */}
           <div className="bg-primary h-16 flex justify-between items-center px-4">
             <span className="text-white ml-10 text-lg font-bold">Crear Perfil</span>
-            <button className="border border-white text-white py-2 px-10 mr-10 rounded text-xs" onClick={() => navigate("/RUTA TABLA")}>Cancelar</button>
+            <button className="border border-white text-white py-2 px-10 mr-10 rounded text-xs" onClick={() => navigate("/")}>Cancelar</button>
           </div>
           {/* Barra de progreso */}
           <MenuBar />

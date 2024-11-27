@@ -1,8 +1,37 @@
 import { useState, useEffect, useRef } from "react";
 import { Eye, Edit, Trash2, MoreVertical } from "lucide-react";
 import Headers from "./components/header";
+import { Navigation, useNavigate } from "react-router-dom";
 
 const MedicalProfiles = () => {
+  const navigate = useNavigate();
+  const [profiles, setProfiles] = useState([
+    {
+      id: 1,
+      cedula: "504530729",
+      nombre: "Allan Araya",
+      tipoSangre: "O+",
+      alergias: "Aspirina",
+      enfermedadesCronicas: "Diabetes tipo 2",
+    },
+    {
+      id: 2,
+      cedula: "402530111",
+      nombre: "María Pérez",
+      tipoSangre: "A-",
+      alergias: "Penicilina",
+      enfermedadesCronicas: "Hipertensión",
+    },
+    {
+      id: 3,
+      cedula: "304520123",
+      nombre: "Carlos Mora",
+      tipoSangre: "B+",
+      alergias: "Ninguna",
+      enfermedadesCronicas: "Asma",
+    },
+  ]);
+
   const [dropdownIndex, setDropdownIndex] = useState<number | null>(null);
   const [dropdownPosition, setDropdownPosition] = useState({ x: 0, y: 0 });
   const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -32,18 +61,13 @@ const MedicalProfiles = () => {
 
   return (
     <div className="">
-
       <Headers />
       <div className="flex justify-center items-center mt-10">
-      
         <main className="w-full mx-56 bg-white border border-gray-100 shadow rounded overflow-hidden font-serif">
           <div className="relative bg-primary h-16 flex justify-between items-center px-4 overflow-hidden">
-            
-            <span className="text-white ml- text-lg font-bold">Gestión de Perfiles Médicos</span>
-
-           
-            
-            {/* Triángulo naranaj de mierda */}
+            <span className="text-white text-lg font-bold">
+              Gestión de Perfiles Médicos
+            </span>
             <svg
               className="absolute top-0 right-0 h-16 w-16"
               viewBox="0 0 100 100"
@@ -52,16 +76,10 @@ const MedicalProfiles = () => {
               <polygon points="0,0 100,0 100,100" fill="#FF6600" />
             </svg>
           </div>
-
-
-       
           <div className="flex items-center justify-between m-4">
-         
             <span className="text-lg text-[#003366] font-semibold">
               Perfiles Registrados
             </span>
-
-        /
             <div className="relative flex-1 max-w-md mx-auto">
               <input
                 type="text"
@@ -83,18 +101,14 @@ const MedicalProfiles = () => {
                 />
               </svg>
             </div>
-
-           
-            <button className="bg-orange-500 text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-orange-600 transition">
+            <button className="bg-orange-500 text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-orange-600 transition" onClick={() => navigate("/crear1")}>
               + Crear Nuevo Perfil
             </button>
           </div>
-
-          {/* Tabla registrsi */}
           <div className="overflow-x-auto m-4 rounded">
             <table className="min-w-full bg-white rounded-lg relative">
               <thead>
-                <tr className="">
+                <tr>
                   <th className="py-3 px-6 text-left font-semibold text-sm text-gray-700">
                     Cédula
                   </th>
@@ -116,14 +130,22 @@ const MedicalProfiles = () => {
                 </tr>
               </thead>
               <tbody>
-                {Array.from({ length: 3 }).map((_, index) => (
-                  <tr key={index} className="border-t">
-                    <td className="py-3 px-6 text-sm text-gray-700">504530729</td>
-                    <td className="py-3 px-6 text-sm text-gray-700">Allan Araya</td>
-                    <td className="py-3 px-6 text-sm text-gray-700">O+</td>
-                    <td className="py-3 px-6 text-sm text-gray-700">Aspirina</td>
+                {profiles.map((profile, index) => (
+                  <tr key={profile.id} className="border-t">
+                    <td className="py-3 px-6 text-sm  text-gray-700">
+                      {profile.cedula}
+                    </td>
                     <td className="py-3 px-6 text-sm text-gray-700">
-                      Diabetes tipo 2
+                      {profile.nombre}
+                    </td>
+                    <td className="py-3 px-6 text-sm  text-gray-700">
+                      {profile.tipoSangre}
+                    </td>
+                    <td className="py-3 px-6 text-sm text-gray-700">
+                      {profile.alergias}
+                    </td>
+                    <td className="py-3 px-6 text-sm text-gray-700">
+                      {profile.enfermedadesCronicas}
                     </td>
                     <td className="py-3 px-6 text-center relative">
                       <button
@@ -139,8 +161,6 @@ const MedicalProfiles = () => {
             </table>
           </div>
         </main>
-
-      
         {dropdownIndex !== null && (
           <div
             ref={dropdownRef}
@@ -151,15 +171,15 @@ const MedicalProfiles = () => {
               width: "150px",
             }}
           >
-            <button className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
+            <button className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full" onClick={()=>navigate("")}>
               <Eye className="mr-2" size={16} />
               Ver
             </button>
-            <button className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
+            <button className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full"onClick={()=>navigate("")}>
               <Edit className="mr-2" size={16} />
               Editar
             </button>
-            <button className="flex items-center px-4 py-2 text-sm text-red-500 hover:bg-gray-100 w-full">
+            <button className="flex items-center px-4 py-2 text-sm text-red-500 hover:bg-gray-100 w-full"onClick={()=>navigate("")}>
               <Trash2 className="mr-2" size={16} />
               Eliminar
             </button>
