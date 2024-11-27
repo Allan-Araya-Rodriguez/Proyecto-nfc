@@ -1,0 +1,10 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Source Serif Pro', serif;
+}
+
+.header-clip {
+  background-color: #FF6600;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
