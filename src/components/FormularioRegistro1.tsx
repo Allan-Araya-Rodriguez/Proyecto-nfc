@@ -1,15 +1,17 @@
-import { useState } from 'react';
-import InputField from '../components/input'; 
+import React from 'react';
+import { useFormulario } from '../context/FormularioContext'; // Importa el contexto
+import InputField from '../components/input';
 import InputSelect from '../components/SelectField';
-import { User, IdCard, UserPlus, Calendar } from 'lucide-react'; 
+import { User, IdCard, UserPlus, Calendar } from 'lucide-react';
 
 function FormularioRegistro() {
-    const [cedula, setCedula] = useState('343');
-    const [nombre, setNombre] = useState('allan');
-    const [primerApellido, setPrimerApellido] = useState('');
-    const [segundoApellido, setSegundoApellido] = useState('');
-    const [fechaNacimiento, setFechaNacimiento] = useState('');
-    const [carrera, setCarrera] = useState('');
+    // Accede al estado global del formulario y la función para actualizarlo
+    const { formulario, setFormulario } = useFormulario();
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormulario({ ...formulario, [name]: value });
+    };
 
     return (
         <form>
@@ -20,8 +22,8 @@ function FormularioRegistro() {
                     placeholder="Ingrese su Cédula"
                     type="text"
                     Icon={IdCard}
-                    value={cedula}
-                    onChange={(e) => setCedula(e.target.value)} 
+                    value={formulario.cedula}
+                    onChange={handleChange}
                 />
                 <InputField
                     name="nombre"
@@ -29,8 +31,8 @@ function FormularioRegistro() {
                     placeholder="Ingrese su Nombre"
                     type="text"
                     Icon={User}
-                    value={nombre}
-                    onChange={(e) => setNombre(e.target.value)} 
+                    value={formulario.nombre}
+                    onChange={handleChange}
                 />
                 <InputField
                     name="primerApellido"
@@ -38,8 +40,8 @@ function FormularioRegistro() {
                     placeholder="Ingrese su Primer Apellido"
                     type="text"
                     Icon={UserPlus}
-                    value={primerApellido}
-                    onChange={(e) => setPrimerApellido(e.target.value)} 
+                    value={formulario.primerApellido}
+                    onChange={handleChange}
                 />
                 <InputField
                     name="segundoApellido"
@@ -47,8 +49,8 @@ function FormularioRegistro() {
                     placeholder="Ingrese su Segundo Apellido"
                     type="text"
                     Icon={UserPlus}
-                    value={segundoApellido}
-                    onChange={(e) => setSegundoApellido(e.target.value)} 
+                    value={formulario.segundoApellido}
+                    onChange={handleChange}
                 />
                 <InputField
                     name="fechaNacimiento"
@@ -56,16 +58,18 @@ function FormularioRegistro() {
                     placeholder="Seleccione su fecha de nacimiento"
                     type="date"
                     Icon={Calendar}
-                    value={fechaNacimiento}
-                    onChange={(e) => setFechaNacimiento(e.target.value)} 
+                    value={formulario.fechaNacimiento}
+                    onChange={handleChange}
                 />
                 <InputSelect
                     name="carrera"
                     label="Seleccione su carrera"
                     placeholder="Elija una carrera"
                     options={['ITI', 'GAE', 'IGA', 'ISOA']}
+                    value={formulario.carrera}
+                    onChange={handleChange}
                 />
-                <label className="tblock text-gray-700 font-semibold text-xs mb-2">Foto</label>
+                <label className="block text-gray-700 font-semibold text-xs mb-2">Foto</label>
             </div>
         </form>
     );

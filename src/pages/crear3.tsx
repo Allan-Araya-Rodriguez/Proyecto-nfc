@@ -1,18 +1,33 @@
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
 import { Mail, Phone, MapPinHouse } from 'lucide-react';
 import InputField from '../components/input';
 import Headers from '../components/header';
 import MenuBar from '../components/menuCrear';
+import { useFormulario } from '../context/FormularioContext'; // Importar el contexto
 
 function Crear3() {
     const navigate = useNavigate();
 
-    const [correo, setCorreo] = useState("ww");
-    const [telef, setTelef] = useState('');
-    const [direccion, setDireccion] = useState('');
-    const [segundoApellido, setSegundoApellido] = useState('');
-    const [telefEmergencia, setTelefEmergencia] = useState('');
+    // Obtener el estado y el setter del contexto
+    const { formulario, setFormulario } = useFormulario();
+
+    // Manejo de estado local para los nuevos campos
+    const [correo, setCorreo] = useState(formulario.correo);
+    const [telef, setTelef] = useState(formulario.telefonoPersonal);
+    const [direccion, setDireccion] = useState(formulario.direccion);
+    const [telefEmergencia, setTelefEmergencia] = useState(formulario.telefonoEmergencia);
+
+    // Actualizar el estado global cuando el valor cambie
+    useEffect(() => {
+        setFormulario((prevFormulario) => ({
+            ...prevFormulario,
+            correo,
+            telefonoPersonal: telef,
+            direccion,
+            telefonoEmergencia: telefEmergencia,
+        }));
+    }, [correo, telef, direccion, telefEmergencia, setFormulario]);
 
     const handleCorreoChange = (e: React.ChangeEvent<HTMLInputElement>) => setCorreo(e.target.value);
     const handleTelefChange = (e: React.ChangeEvent<HTMLInputElement>) => setTelef(e.target.value);

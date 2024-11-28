@@ -1,38 +1,56 @@
-import React, { useState } from "react";
-import { Edit2, X, Check } from "lucide-react"; // Importar íconos específicos
+import React, { useState, useEffect } from "react";
+import { Edit2, X, Check } from "lucide-react";
 import Headers from "../components/header";
 import MenuBar from "../components/menuCrear";
-import { Navigate ,useNavigate } from "react-router-dom";
-interface Item {
-    id: number;
-    name: string;
-}
+import { Navigate, useNavigate } from "react-router-dom";
+import { useFormulario } from "../context/FormularioContext"; // Importar el hook de contexto
 
 const RegistroEnfermedadesYAlergias: React.FC = () => {
     const navigate = useNavigate();
 
+    // Obtener los métodos y el estado del contexto
+    const {
+        formulario,
+        agregarEnfermedad,
+        agregarAlergia,
+        eliminarEnfermedad,
+        eliminarAlergia,
+        editarEnfermedad,
+        editarAlergia,
+    } = useFormulario();
+
     const [enfermedad, setEnfermedad] = useState<string>("");
     const [alergia, setAlergia] = useState<string>("");
-    const [enfermedades, setEnfermedades] = useState<Item[]>([]);
-    const [alergias, setAlergias] = useState<Item[]>([]);
     const [editandoId, setEditandoId] = useState<number | null>(null);
     const [editValue, setEditValue] = useState<string>("");
 
-    const handleAgregar = (item: string, setItems: React.Dispatch<React.SetStateAction<Item[]>>, items: Item[]) => {
+    // Manejar agregar, editar y eliminar elementos
+    const handleAgregar = (item: string, tipo: "enfermedad" | "alergia") => {
         if (item.trim()) {
-            setItems([...items, { id: Date.now(), name: item }]);
+            if (tipo === "enfermedad") {
+                agregarEnfermedad(item);
+            } else {
+                agregarAlergia(item);
+            }
         }
     };
 
-    const handleEditar = (id: number, items: Item[], setItems: React.Dispatch<React.SetStateAction<Item[]>>) => {
-        const updatedItems = items.map((item) => (item.id === id ? { ...item, name: editValue } : item));
-        setItems(updatedItems);
+    const handleEditar = (id: number, tipo: "enfermedad" | "alergia") => {
+        if (tipo === "enfermedad") {
+            editarEnfermedad(id, editValue);
+        } else {
+            editarAlergia(id, editValue);
+        }
         setEditandoId(null);
         setEditValue("");
     };
 
-    const handleEliminar = (id: number, setItems: React.Dispatch<React.SetStateAction<Item[]>>) => {
-        setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    const handleEliminar = (id: number, tipo: "enfermedad" | "alergia") => {
+        if (tipo === "enfermedad") {
+            eliminarEnfermedad(id);
+        } else {
+            eliminarAlergia(id);
+        }
     };
 
     return (
@@ -60,7 +78,7 @@ const RegistroEnfermedadesYAlergias: React.FC = () => {
                                 />
                                 <button
                                     onClick={() => {
-                                        handleAgregar(enfermedad, setEnfermedades, enfermedades);
+                                        handleAgregar(enfermedad, "enfermedad");
                                         setEnfermedad("");
                                     }}
                                     className="bg-secondary text-white px-4 py-2 rounded hover:bg-gray-800"
@@ -69,7 +87,7 @@ const RegistroEnfermedadesYAlergias: React.FC = () => {
                                 </button>
                             </div>
                             <ul>
-                                {enfermedades.map((item) => (
+                                {formulario.enfermedades.map((item) => (
                                     <li key={item.id} className="flex justify-between items-center mb-2 bg-gray-100 p-2 rounded">
                                         {editandoId === item.id ? (
                                             <input
@@ -84,7 +102,7 @@ const RegistroEnfermedadesYAlergias: React.FC = () => {
                                         <div className="flex gap-2">
                                             {editandoId === item.id ? (
                                                 <button
-                                                    onClick={() => handleEditar(item.id, enfermedades, setEnfermedades)}
+                                                    onClick={() => handleEditar(item.id, "enfermedad")}
                                                 >
                                                     <Check className=" text-secondary" />
                                                 </button>
@@ -98,7 +116,7 @@ const RegistroEnfermedadesYAlergias: React.FC = () => {
                                                     <Edit2 className=" text-secondary" />
                                                 </button>
                                             )}
-                                            <button onClick={() => handleEliminar(item.id, setEnfermedades)}>
+                                            <button onClick={() => handleEliminar(item.id, "enfermedad")}>
                                                 <X className=" text-secondary" />
                                             </button>
                                         </div>
@@ -120,7 +138,7 @@ const RegistroEnfermedadesYAlergias: React.FC = () => {
                                 />
                                 <button
                                     onClick={() => {
-                                        handleAgregar(alergia, setAlergias, alergias);
+                                        handleAgregar(alergia, "alergia");
                                         setAlergia("");
                                     }}
                                     className="bg-primary text-white px-4 py-2 rounded hover:bg-gray-800"
@@ -129,7 +147,7 @@ const RegistroEnfermedadesYAlergias: React.FC = () => {
                                 </button>
                             </div>
                             <ul>
-                                {alergias.map((item) => (
+                                {formulario.alergias.map((item) => (
                                     <li key={item.id} className="flex justify-between items-center mb-2 bg-gray-100 p-2 rounded">
                                         {editandoId === item.id ? (
                                             <input
@@ -144,7 +162,7 @@ const RegistroEnfermedadesYAlergias: React.FC = () => {
                                         <div className="flex gap-2">
                                             {editandoId === item.id ? (
                                                 <button
-                                                    onClick={() => handleEditar(item.id, alergias, setAlergias)}
+                                                    onClick={() => handleEditar(item.id, "alergia")}
                                                 >
                                                     <Check className=" text-secondary" />
                                                 </button>
@@ -158,7 +176,7 @@ const RegistroEnfermedadesYAlergias: React.FC = () => {
                                                     <Edit2 className=" text-secondary" />
                                                 </button>
                                             )}
-                                            <button onClick={() => handleEliminar(item.id, setAlergias)}>
+                                            <button onClick={() => handleEliminar(item.id, "alergia")}>
                                                 <X className=" text-secondary" />
                                             </button>
                                         </div>
@@ -167,20 +185,16 @@ const RegistroEnfermedadesYAlergias: React.FC = () => {
                             </ul>
                         </div>
                         <div className="flex justify-between">
-              <button className="border border-blue-700 text-blue-700 py-2 px-10  rounded text-xs" onClick={()=> navigate("/crear3")}>
-                Retroceder
-              </button>
-              <button className="border border-secondary text-secondary py-2 px-10  rounded text-xs" onClick={()=>navigate("/")}>
-                Guardar
-              </button>
-            </div>
+                            <button className="border border-blue-700 text-blue-700 py-2 px-10 rounded text-xs" onClick={() => navigate("/crear3")}>
+                                Retroceder
+                            </button>
+                            <button className="border border-secondary text-secondary py-2 px-10 rounded text-xs" onClick={() => navigate("/")}>
+                                Guardar
+                            </button>
+                        </div>
                     </div>
-                    
                 </div>
-                
-                
             </div>
-           
         </div>
     );
 };
