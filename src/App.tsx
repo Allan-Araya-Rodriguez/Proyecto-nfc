@@ -1,14 +1,12 @@
-import Header from './layouts/Header';
-import Body from './layouts/Body';
+import { useState } from 'react';
+import TarjetaMedica from './components/TarjetaMedica';
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Vista from './pages/Vista';
 
 function App() {
   return (
-    <BrowserRouter>
-    
-    </BrowserRouter>
+    <div className="App">
+      <TarjetaMedica />
+    </div>
   );
 }
 
