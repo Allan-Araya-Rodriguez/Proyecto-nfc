@@ -5,14 +5,13 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import App from './Tabla';
+import App from './pages/Tabla';
 import App1 from './App';
 import Crear1 from './pages/crear1';
 import Crear2 from './pages/crear2';
 import Crear3 from './pages/crear3';
 import Vista from './pages/Vista';
 import RegistroEnfermedadesYAlergias from './pages/enfermedadesAlergias';
-import Body from './layouts/Body';
 
 
 

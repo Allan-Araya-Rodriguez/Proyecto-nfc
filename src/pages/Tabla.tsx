@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Eye, Edit, Trash2, MoreVertical } from "lucide-react";
-import Headers from "./components/header";
+import Headers from "../components/header";
 import { Navigation, useNavigate } from "react-router-dom";
 
 const MedicalProfiles = () => {
@@ -171,7 +171,7 @@ const MedicalProfiles = () => {
               width: "150px",
             }}
           >
-            <button className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full" onClick={()=>navigate("")}>
+            <button className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full" onClick={()=>navigate("/vista")}>
               <Eye className="mr-2" size={16} />
               Ver
             </button>

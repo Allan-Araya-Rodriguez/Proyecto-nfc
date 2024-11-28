@@ -7,8 +7,11 @@ import LabelIconItem from '../components/LabelIconItem';
 import LinkModal from '../components/LinkModal';
 import { GiMedicalDrip } from "react-icons/gi";
 import Headers from "../components/header";
+import { useNavigate } from "react-router-dom";
 
 export default function Vista() {
+
+    const navigate = useNavigate();
     const [foto, setFoto] = useState('');
     const [cedula, setCedula] = useState('504450326');
     const [nombre, setNombre] = useState('Andrés Sandoval Herrera');
@@ -133,8 +136,16 @@ export default function Vista() {
                 </div>
                 <LabelIconItem label="Dirección:" data={direccion} icon={FaMapMarkedAlt} />
                 <LabelIconItem label="Contactos de emergencia:" data={contactos} icon={MdContacts} />
+                
+             
+              
+            
             </div>
+            <button className="border border-blue-700 text-blue-700 py-2 px-10  m-4 rounded text-xs" onClick={()=> navigate("/")}>
+                Retroceder
+              </button>
         </div>
+      
         </div>
     );
 }

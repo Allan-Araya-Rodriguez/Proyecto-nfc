@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import TarjetaMedica from './components/TarjetaMedica';
-import styles from './layouts/card.module.css'; // Importa el CSS como módulo
+import './layouts/card.css';
 
 function App() {
   return (
-    <div className={styles.App}> {/* Aplica el CSS solo a este div */}
+    <div className="App m-auto p-[2rem]">
       <TarjetaMedica />
     </div>
   );
