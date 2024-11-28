@@ -18,9 +18,9 @@ const TarjetaMedica = ({
 }) => {
   return (
     <div className="max-w-md w-full mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-      <div className="relative bg-blue-600 p-4 flex items-center gap-4 overflow-hidden">
+      <div className="relative bg-primary p-4 flex items-center gap-4 overflow-hidden">
   <div 
-     className="absolute top-0 right-0 w-14 h-24 bg-orange-400" 
+     className="absolute top-0 right-0 w-14 h-24 bg-secondary" 
     style={{ clipPath: 'polygon(120% 0, 0 0, 100% 87%)' }}
   ></div>
 

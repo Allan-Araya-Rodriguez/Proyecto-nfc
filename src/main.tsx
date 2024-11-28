@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from './Tabla';
+import App1 from './App';
 import Crear1 from './pages/crear1';
 import Crear2 from './pages/crear2';
 import Crear3 from './pages/crear3';
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: "/vista",
     element: <Vista />,
+  },
+  {
+    path: "/card",
+    element: <App1 />,
   },
 
 ]);
