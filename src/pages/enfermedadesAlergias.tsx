@@ -35,6 +35,27 @@ const RegistroEnfermedadesYAlergias: React.FC = () => {
         }
     };
 
+    const handleGuardar = () => {
+        // Limpiar campos al gurdar
+        formulario.cedula = '';
+        formulario.nombre = '';
+        formulario.primerApellido = '';
+        formulario.segundoApellido = '';
+        formulario.fechaNacimiento = '';
+        formulario.carrera = '';
+        formulario.tipoSangre = '';
+        formulario.acceptsTransfusions = false;
+        formulario.isDonor = false;
+        formulario.medicamentos = '';
+        formulario.correo = '';
+        formulario.telefonoPersonal = '';
+        formulario.telefonoEmergencia = '';
+        formulario.direccion = '';
+        formulario.enfermedades = [];
+        formulario.alergias = [];
+        navigate("/");
+    };
+
     const handleEditar = (id: number, tipo: "enfermedad" | "alergia") => {
         if (tipo === "enfermedad") {
             editarEnfermedad(id, editValue);
@@ -188,7 +209,7 @@ const RegistroEnfermedadesYAlergias: React.FC = () => {
                             <button className="border border-blue-700 text-blue-700 py-2 px-10 rounded text-xs" onClick={() => navigate("/crear3")}>
                                 Retroceder
                             </button>
-                            <button className="border border-secondary text-secondary py-2 px-10 rounded text-xs" onClick={() => navigate("/")}>
+                            <button className="border border-secondary text-secondary py-2 px-10 rounded text-xs" onClick={handleGuardar}>
                                 Guardar
                             </button>
                         </div>
